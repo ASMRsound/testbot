@@ -140,6 +140,9 @@ client.on('message', (message) => {
       })
   } else if(message.content.startsWith('!전체공지2')) {
     if(checkPermission(message)) return
+    if(message.channel.type == 'dm') {
+      return message.reply('dm에서 사용할 수 없는 명령어 입니다.');
+    }
     if(message.member != null) { // 채널에서 공지 쓸 때
       let contents = message.content.slice('!전체공지2'.length);
       let embed = new Discord.RichEmbed()
@@ -161,6 +164,9 @@ client.on('message', (message) => {
     }
   } else if(message.content.startsWith('!전체공지')) {
     if(checkPermission(message)) return
+    if(message.channel.type == 'dm') {
+      return message.reply('dm에서 사용할 수 없는 명령어 입니다.');
+    }
     if(message.member != null) { // 채널에서 공지 쓸 때
       let contents = message.content.slice('!전체공지'.length);
       message.member.guild.members.array().forEach(x => {
